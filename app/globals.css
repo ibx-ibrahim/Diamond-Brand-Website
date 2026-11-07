@@ -1,26 +1,1288 @@
-@import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ========================================
+   DIAMOND BRAND - DESIGN TOKENS
+======================================== */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-barlow);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-brand-red: #ed2929;
+  --color-brand-dark: #090909;
+  --color-brand-light: #d3d3d3;
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ========================================
+   LIGHT THEME
+======================================== */
+
+:root {
+  --background: #d3d3d3;
+  --foreground: #090909;
+
+  --card: #e5e5e5;
+  --card-foreground: #090909;
+
+  --popover: #ffffff;
+  --popover-foreground: #090909;
+
+  --primary: #ed2929;
+  --primary-foreground: #ffffff;
+
+  --secondary: #e5e5e5;
+  --secondary-foreground: #090909;
+
+  --muted: #e5e5e5;
+  --muted-foreground: #555555;
+
+  --accent: #fce5e5;
+  --accent-foreground: #ed2929;
+
+  --destructive: #dc2626;
+
+  --border: #c4c4c4;
+  --input: #c4c4c4;
+  --ring: #ed2929;
+
+  --radius: 0.625rem;
+
+  --chart-1: #ed2929;
+  --chart-2: #090909;
+  --chart-3: #777777;
+  --chart-4: #a3a3a3;
+  --chart-5: #d3d3d3;
+
+  --sidebar: #eeeeee;
+  --sidebar-foreground: #090909;
+  --sidebar-primary: #ed2929;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #fce5e5;
+  --sidebar-accent-foreground: #090909;
+  --sidebar-border: #c4c4c4;
+  --sidebar-ring: #ed2929;
+}
+
+/* ========================================
+   DARK THEME
+======================================== */
+
+.dark {
+  --background: #090909;
+  --foreground: #ffffff;
+
+  --card: #171717;
+  --card-foreground: #ffffff;
+
+  --popover: #171717;
+  --popover-foreground: #ffffff;
+
+  --primary: #ed2929;
+  --primary-foreground: #ffffff;
+
+  --secondary: #262626;
+  --secondary-foreground: #ffffff;
+
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+
+  --accent: #381515;
+  --accent-foreground: #ffffff;
+
+  --destructive: #ef4444;
+
+  --border: #333333;
+  --input: #333333;
+  --ring: #ed2929;
+
+  --sidebar: #111111;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ed2929;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #262626;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #333333;
+  --sidebar-ring: #ed2929;
+}
+
+/* ========================================
+   BASE STYLES
+======================================== */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    @apply font-sans;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter), sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-barlow), sans-serif;
+    font-weight: 700;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  ::selection {
+    background: #ed2929;
+    color: #ffffff;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ========================================
+   REUSABLE BRAND UTILITIES
+======================================== */
+
+@layer utilities {
+  .font-heading {
+    font-family: var(--font-barlow), sans-serif;
+  }
+
+  .font-body {
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  .text-brand-red {
+    color: #ed2929;
+  }
+
+  .bg-brand-red {
+    background-color: #ed2929;
+  }
+
+  .bg-brand-dark {
+    background-color: #090909;
+  }
+
+  .section-container {
+    width: 100%;
+    max-width: 1450px;
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  .brand-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(180deg, #f52e2e, #a91414);
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 9px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+  }
+
+  .brand-button:hover {
+    background: #c91d1d;
+    transform: translateY(-2px);
+  }
+}
+
+
+
+
+/* ========================================
+   DIAMOND BRAND - RESPONSIVE HERO
+======================================== */
+
+.diamond-hero {
+  position: relative;
+  width: 100%;
+  min-height: 780px;
+  height: 100svh;
+  max-height: 1050px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #03070b;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Stadium background */
+
+.stadium-background {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background-image: url("/images/hero/stadium.jpg");
+  background-position: center center;
+  background-size: cover;
+  transform: scale(1.04);
+  animation: stadiumZoom 22s ease-in-out infinite alternate;
+}
+
+@keyframes stadiumZoom {
+  from { transform: scale(1.04); }
+  to { transform: scale(1.1); }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(0, 0, 0, 0.17) 40%,
+      rgba(0, 0, 0, 0.2) 65%,
+      rgba(0, 0, 0, 0.9) 100%
+    ),
+    radial-gradient(
+      ellipse at center 40%,
+      transparent 0%,
+      rgba(0, 0, 0, 0.3) 80%
+    );
+}
+
+/* Top information bar */
+
+.topbar {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  min-height: 34px;
+  padding: 7px clamp(20px, 6%, 100px);
+  background: rgba(245, 245, 245, 0.88);
+  color: #161616;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.topbar-tagline {
+  white-space: nowrap;
+}
+
+.topbar-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(10px, 1.5vw, 22px);
+}
+
+.topbar-info a,
+.topbar-info span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: #161616;
+}
+
+/* Header / Navigation */
+
+.hero-navbar {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  /* padding: 18px clamp(20px, 6%, 100px); */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 24px; */
+}
+
+.brand-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo img {
+  width: clamp(58px, 5vw, 82px);
+  height: clamp(65px, 6vw, 95px);
+  object-fit: contain;
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.53);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.desktop-nav a {
+  padding: 9px clamp(9px, 1.1vw, 18px);
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(9px, 0.72vw, 12px);
+  font-weight: 600;
+  color: #111;
+  white-space: nowrap;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active {
+  background: #fff;
+  color: #c21b20;
+}
+
+.contact-button,
+.primary-cta {
+  background: linear-gradient(135deg, #ed292e, #a91419);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 10px;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 700;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.contact-button {
+  flex-shrink: 0;
+  padding: 12px 23px;
+  font-size: 12px;
+}
+
+.contact-button:hover,
+.primary-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(220, 25, 30, 0.4);
+}
+
+.mobile-menu {
+  display: none;
+  color: #fff;
+  background: transparent;
+  border: none;
+  padding: 7px;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+/* Hero content */
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 31px;
+  text-align: center;
+  padding: clamp(20px, 2.4vw, 38px) 20px 0;
+  margin-inline: auto;
+}
+
+.hero-tag {
+  display: inline-block;
+  padding: 7px 12px;
+  border: 1px solid #ed2929;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.4);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 13px;
+}
+
+.hero-content h1 {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(42px, 5.1vw, 84px);
+  line-height: 1;
+  font-weight: 600;
+  /* letter-spacing: -1.8px; */
+  white-space: nowrap;
+}
+
+.hero-content h1 span {
+  display: inline-block;
+  background: linear-gradient(135deg, #f02e33, #9b1116);
+  padding: 3px 17px 8px;
+  border-radius: 12px;
+}
+
+.hero-content p {
+  margin-top: 17px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(14px, 1.25vw, 20px);
+  color: #e2e2e2;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 23px;
+}
+
+.primary-cta,
+.secondary-cta {
+  min-height: 46px;
+  padding: 12px 17px;
+  font-size: 15px;
+}
+
+.secondary-cta {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.secondary-cta:hover {
+  background: #fff;
+  color: #111;
+}
+
+/* Jersey showcase */
+
+.jersey-stage {
+  position: absolute;
+  z-index: 3;
+  left: 2%;
+  right: 2%;
+  bottom: 65px;
+  height: clamp(230px, 34vw, 390px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(3px, 0.5vw, 10px);
+  pointer-events: none;
+}
+
+.jersey-item {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transform-origin: center top;
+}
+
+.jersey-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.6));
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: filter 0.35s ease;
+}
+
+.jersey-item:hover img {
+  filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.3));
+}
+
+/* Smoke effect */
+
+.smoke-container {
+  position: absolute;
+  z-index: 4;
+  bottom: 55px;
+  left: -10%;
+  width: 120%;
+  height: 190px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.7;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 30%,
+    black 75%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 30%,
+    black 75%,
+    transparent
+  );
+}
+
+.smoke {
+  position: absolute;
+  width: 120%;
+  height: 180px;
+  left: -10%;
+  bottom: -50px;
+  filter: blur(24px);
+  background:
+    radial-gradient(
+      ellipse at 20% 50%,
+      rgba(210, 215, 220, 0.3),
+      transparent 48%
+    ),
+    radial-gradient(
+      ellipse at 65% 40%,
+      rgba(190, 195, 200, 0.25),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 85% 70%,
+      rgba(220, 220, 220, 0.22),
+      transparent 45%
+    );
+  animation: smokeMove 12s ease-in-out infinite alternate;
+}
+
+.smoke-two {
+  bottom: -75px;
+  opacity: 0.65;
+  filter: blur(35px);
+  animation-duration: 17s;
+  animation-direction: alternate-reverse;
+}
+
+.smoke-three {
+  bottom: -95px;
+  opacity: 0.5;
+  filter: blur(45px);
+  animation-duration: 21s;
+}
+
+@keyframes smokeMove {
+  0% {
+    transform: translateX(-5%) translateY(10px) scale(1);
+  }
+
+  50% {
+    transform: translateX(5%) translateY(-25px) scale(1.12);
+  }
+
+  100% {
+    transform: translateX(-2%) translateY(5px) scale(1.05);
+  }
+}
+
+/* Bottom benefits */
+
+.hero-benefits {
+  position: absolute;
+  z-index: 6;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  min-height: 64px;
+  padding: 12px clamp(15px, 5%, 70px);
+  background: rgba(245, 245, 245, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 18px 18px 0 0;
+  color: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(12px, 2vw, 30px);
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(9px, 0.85vw, 13px);
+  font-weight: 600;
+}
+
+.hero-benefits div {
+  white-space: nowrap;
+}
+
+.hero-benefits div + div {
+  border-left: 1px solid #777;
+  padding-left: clamp(12px, 2vw, 28px);
+}
+
+/* ========================================
+   LAPTOP RESPONSIVENESS
+======================================== */
+
+@media (max-width: 1200px) {
+  .hero-navbar {
+    padding-inline: 3%;
+    gap: 12px;
+  }
+
+  .desktop-nav a {
+    padding: 11px 8px;
+    font-size: 9px;
+  }
+
+  .contact-button {
+    padding: 11px 14px;
+    font-size: 10px;
+  }
+
+  .hero-content {
+    padding-top: 25px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(40px, 5vw, 62px);
+  }
+
+  .jersey-stage {
+    height: clamp(220px, 31vw, 330px);
+    bottom: 65px;
+  }
+
+  .hero-benefits {
+    gap: 12px;
+  }
+
+  .hero-benefits div + div {
+    padding-left: 12px;
+  }
+}
+
+/* Compact laptop and tablet landscape */
+
+@media (max-width: 1024px) {
+  .diamond-hero {
+    min-height: 720px;
+    height: 100svh;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-navbar {
+    padding: 12px 5%;
+  }
+
+  .mobile-nav {
+    position: absolute;
+    z-index: 30;
+    top: 145px;
+    left: 5%;
+    right: 5%;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: rgba(8, 12, 17, 0.96);
+    backdrop-filter: blur(18px);
+  }
+
+  .mobile-nav a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 12px;
+    font-family: var(--font-inter), sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 6px;
+  }
+
+  .mobile-nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-nav .mobile-contact {
+    justify-content: center;
+    background: #ed2929;
+    margin-top: 5px;
+  }
+
+  .jersey-stage {
+    left: 1%;
+    right: 1%;
+    height: clamp(230px, 33vw, 300px);
+    bottom: 65px;
+  }
+}
+
+/* ========================================
+   MOBILE RESPONSIVENESS
+======================================== */
+
+@media (max-width: 768px) {
+  .diamond-hero {
+    height: auto;
+    min-height: 100svh;
+    max-height: none;
+    padding-bottom: 0;
+  }
+
+  .stadium-background {
+    background-position: center;
+  }
+
+  .topbar {
+    min-height: 30px;
+    justify-content: center;
+    padding: 8px 10px;
+    text-align: center;
+    font-size: 8px;
+  }
+
+  .topbar-tagline {
+    white-space: normal;
+  }
+
+  .topbar-info {
+    display: none;
+  }
+
+  .hero-navbar {
+    padding: 10px 5%;
+  }
+
+  .brand-logo img {
+    width: 55px;
+    height: 62px;
+  }
+
+  .contact-button,
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+
+  .mobile-nav {
+    top: 115px;
+  }
+
+  .hero-content {
+    padding: 32px 15px 0;
+  }
+
+  .hero-tag {
+    font-size: 9px;
+    padding: 7px 10px;
+    margin-bottom: 16px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(36px, 9vw, 56px);
+    line-height: 0.98;
+    letter-spacing: -1px;
+    white-space: normal;
+  }
+
+  .hero-content h1 span {
+    margin-top: 5px;
+    padding: 4px 10px 7px;
+    border-radius: 8px;
+  }
+
+  .hero-content p {
+    max-width: 340px;
+    margin: 15px auto;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .hero-buttons {
+    gap: 9px;
+    margin-top: 20px;
+  }
+
+  .primary-cta,
+  .secondary-cta {
+    min-height: 42px;
+    padding: 11px 12px;
+    font-size: 10px;
+  }
+
+  .jersey-stage {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    min-height: 320px;
+    margin-top: 30px;
+    padding: 0 12px 80px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: end;
+    gap: 8px 2px;
+  }
+
+  .jersey-item {
+    width: 100%;
+    height: 150px;
+  }
+
+  .jersey-item img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .jersey-item:nth-child(5) {
+    grid-column: 1;
+  }
+
+  .smoke-container {
+    bottom: 75px;
+    height: 150px;
+    opacity: 0.55;
+  }
+
+  
+/* =========================================
+   DIAMOND BRAND - FIGMA ALIGNMENT UPDATE
+   ========================================= */
+
+/* Desktop navbar: perfectly centered */
+.hero-navbar {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) auto minmax(100px, 1fr);
+  align-items: center;
+  justify-content: initial;
+  gap: 16px;
+  width: 100%;
+  padding: 16px clamp(24px, 6%, 90px);
+}
+
+.brand-logo {
+  justify-self: start;
+}
+
+.brand-logo img {
+  width: clamp(58px, 4.8vw, 76px);
+  height: clamp(62px, 5.5vw, 88px);
+  object-fit: contain;
+}
+
+.desktop-nav {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.desktop-nav a {
+  padding: 11px clamp(8px, 0.85vw, 13px);
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(9px, 0.7vw, 11px);
+  font-weight: 600;
+}
+
+.contact-button {
+  justify-self: end;
+  padding: 11px 19px;
+  font-size: 11px;
+  min-height: 39px;
+}
+
+/* Top information bar */
+.topbar {
+  min-height: 34px;
+  padding: 7px clamp(20px, 6%, 90px);
+  font-size: 10px;
+}
+
+.topbar-info {
+  gap: clamp(10px, 1.4vw, 20px);
+}
+
+/* Hero content */
+.hero-content {
+  width: 100%;
+  height: auto;
+  margin-inline: auto;
+  padding: clamp(25px, 2.2vw, 34px) 20px 0;
+  text-align: center;
+}
+
+.hero-tag {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 7px 12px;
+  margin-bottom: 16px;
+}
+
+.hero-content h1 {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(42px, 5.2vw, 76px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2.5px;
+  white-space: nowrap;
+}
+
+.hero-content h1 span {
+  padding: 3px 16px 7px;
+  border-radius: 11px;
+}
+
+.hero-content p {
+  margin-top: 18px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(15px, 1.53vw, 22px);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.hero-buttons {
+  gap: 16px;
+  margin-top: 23px;
+}
+
+.primary-cta,
+.secondary-cta {
+  min-height: 46px;
+  padding: 11px 19px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* Jersey drop animation stays on desktop */
+.jersey-item {
+  transform-origin: center top;
+}
+
+.jersey-item img {
+  animation: none !important;
+}
+
+/* Tablet and laptop */
+@media (max-width: 1200px) {
+  .hero-navbar {
+    padding-inline: 3%;
+    gap: 10px;
+  }
+
+  .desktop-nav a {
+    padding: 10px 7px;
+    font-size: 9px;
+  }
+
+  .contact-button {
+    padding: 10px 13px;
+    font-size: 10px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(40px, 5.3vw, 64px);
+    letter-spacing: -1.8px;
+  }
+
+  .primary-cta,
+  .secondary-cta {
+    font-size: 16px;
+  }
+}
+
+/* Tablet navigation */
+@media (max-width: 1024px) {
+  .hero-navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 5%;
+  }
+
+  .desktop-nav,
+  .contact-button {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: flex;
+    justify-self: end;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .mobile-nav {
+    position: absolute;
+    z-index: 30;
+    top: 135px;
+    left: 5%;
+    right: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 12px;
+    background: rgba(8, 12, 17, 0.97);
+    backdrop-filter: blur(18px);
+  }
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .diamond-hero {
+    height: auto;
+    min-height: 100svh;
+    max-height: none;
+    padding-bottom: 0;
+  }
+
+  .topbar {
+    min-height: 29px;
+    padding: 7px 10px;
+    justify-content: center;
+    font-size: 8px;
+    text-align: center;
+  }
+
+  .topbar-info {
+    display: none;
+  }
+
+  .topbar-tagline {
+    white-space: normal;
+  }
+
+  .hero-navbar {
+    padding: 10px 5%;
+  }
+
+  .brand-logo img {
+    width: 48px;
+    height: 54px;
+  }
+
+  .mobile-menu {
+    padding: 6px;
+  }
+
+  .mobile-nav {
+    top: 110px;
+  }
+
+  .mobile-nav a {
+    padding: 12px;
+    font-size: 11px;
+  }
+
+  .hero-content {
+    height: auto;
+    padding: 35px 18px 0;
+  }
+
+  .hero-tag {
+    font-size: 10px;
+    padding: 7px 10px;
+    margin-bottom: 17px;
+  }
+
+  .hero-content h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: clamp(34px, 8vw, 48px);
+    line-height: 1;
+    letter-spacing: -1.2px;
+    white-space: normal;
+  }
+
+  .hero-content h1 span {
+    margin: 0;
+    padding: 5px 10px 7px;
+    border-radius: 7px;
+  }
+
+  .hero-content p {
+    max-width: 340px;
+    margin: 15px auto 0;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .hero-buttons {
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .primary-cta,
+  .secondary-cta {
+    min-height: 40px;
+    padding: 10px 12px;
+    font-size: 11px;
+    border-radius: 7px;
+  }
+
+  /* Hide all hero jerseys on mobile */
+  .jersey-stage,
+  .jersey-item {
+    display: none !important;
+  }
+
+  .smoke-container {
+    bottom: 60px;
+    height: 130px;
+    opacity: 0.45;
+  }
+
+  .hero-benefits {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    min-height: auto;
+    margin-top: 75px;
+    padding: 15px 10px;
+    border-radius: 12px 12px 0 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: center;
+    gap: 14px 5px;
+    font-size: 8px;
+    text-align: center;
+  }
+
+  .hero-benefits div {
+    white-space: normal;
+    line-height: 1.5;
+  }
+
+  .hero-benefits div + div {
+    border: none;
+    padding-left: 0;
+  }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+  .hero-content {
+    padding-inline: 12px;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+  }
+
+  .hero-buttons {
+    gap: 7px;
+  }
+
+  .primary-cta,
+  .secondary-cta {
+    font-size: 10px;
+    padding-inline: 9px;
+  }
+
+  .hero-benefits {
+    font-size: 7px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .stadium-background,
+  .smoke {
+    animation: none !important;
+  }
+}
+
 }
