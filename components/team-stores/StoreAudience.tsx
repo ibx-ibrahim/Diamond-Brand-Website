@@ -136,7 +136,21 @@ export default function StoreAudience() {
     <Box
       component="section"
       aria-labelledby="audience-title"
-      sx={{ color: '#0a0a0a' }}
+      sx={{ 
+        color: '#0a0a0a',
+          pt: {
+            xs: 6,
+            sm: 8,
+            md: 10,
+            lg: fluid(90, 48),
+          },
+          pb: {
+            xs: 7,
+            sm: 9,
+            md: 11,
+            lg: fluid(110, 56),
+          },
+       }}
     >
       <Box sx={{ maxWidth: 2560, mx: 'auto', px: GUTTER }}>
         <MotionBox

@@ -214,7 +214,7 @@ export default function ApparelHero() {
                 color: '#fff',
                 textDecoration: 'none',
                 textTransform: 'uppercase',
-                fontWeight: 500,
+                fontWeight: 400,
                 fontSize: fluid(25, 13),
                 whiteSpace: 'nowrap',
                 background: RED_GRADIENT,

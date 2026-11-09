@@ -15,7 +15,7 @@ const DISPLAY = 'var(--font-display), "Bakbak One", "Inter", sans-serif';
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const RED_GRADIENT = 'linear-gradient(180deg, #E52C32 0%, #A5141A 100%)';
 
-/** Store-interior photo. Put it at /public/images/banners/bg-7.png, or change this path. */
+/** Dark stadium photo for the hero. Put it here, or change the path. Without it a CSS backdrop is shown. */
 const BG_SRC = '/images/banners/bg-7.png';
 
 const stack: Variants = {
@@ -31,29 +31,49 @@ const pillIn: Variants = {
   show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
 };
 
+
 function Backdrop() {
   const [missing, setMissing] = React.useState(false);
 
   return (
-    <Box aria-hidden sx={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', bgcolor: '#07090d' }}>
+    <Box
+      aria-hidden
+      sx={{
+        position: 'absolute',
+        inset: 0,
+        zIndex: 0,
+        overflow: 'hidden',
+        bgcolor: '#07090d',
+      }}
+    >
       {!missing && (
         <Image
           src={BG_SRC}
           alt=""
           fill
           priority
-          quality={90}
           sizes="100vw"
           onError={() => setMissing(true)}
-          // keeps the shelf, trophy and floor in view on every screen shape
-          style={{ objectFit: 'cover', objectPosition: '50% 72%' }}
+          style={{
+            objectFit: 'cover',
+            objectPosition: 'center',
+          }}
         />
       )}
-      {/* dark grade so the type stays crisp */}
-      <Box sx={{ position: 'absolute', inset: 0, bgcolor: 'rgba(0,0,0,0.65)', pointerEvents: 'none' }} />
+
+      {/* Subtle dark overlay */}
+      <Box
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.70)',
+          pointerEvents: 'none',
+        }}
+      />
     </Box>
   );
 }
+
 
 export default function TeamStoresHero() {
   const reduce = useReducedMotion();
@@ -61,7 +81,7 @@ export default function TeamStoresHero() {
   return (
     <Box
       component="section"
-      aria-labelledby="team-stores-title"
+      aria-labelledby="apparel-hero-title"
       sx={{
         position: 'relative',
         isolation: 'isolate',
@@ -100,14 +120,14 @@ export default function TeamStoresHero() {
           sx={{
             display: 'inline-flex',
             alignItems: 'center',
-            height: fluid(38, 30),
-            px: fluid(14, 10),
+            height: fluid(47, 32),
+            px: fluid(17, 12),
             borderRadius: fluid(6, 4),
             border: '1px solid #C4202A',
             bgcolor: 'rgba(170,20,30,0.14)',
             boxShadow: '0 0 24px rgba(210,30,40,0.18)',
             fontWeight: 500,
-            fontSize: fluid(19, 12),
+            fontSize: fluid(22, 12),
             textTransform: 'uppercase',
             letterSpacing: '0.01em',
             whiteSpace: 'nowrap',
@@ -118,7 +138,7 @@ export default function TeamStoresHero() {
 
         {/* headline */}
         <Box
-          id="team-stores-title"
+          id="apparel-hero-title"
           role="heading"
           aria-level={1}
           sx={{
@@ -132,7 +152,7 @@ export default function TeamStoresHero() {
             textTransform: 'uppercase',
             letterSpacing: '0.005em',
             lineHeight: 1,
-            fontSize: { xs: 34, sm: 48, md: fluid(125, 28) },
+            fontSize: { xs: 38, sm: 48, md: fluid(135, 15) },
             textShadow: '0 4px 30px rgba(0,0,0,0.45)',
           }}
         >
@@ -145,11 +165,11 @@ export default function TeamStoresHero() {
             sx={{
               display: 'inline-flex',
               alignItems: 'center',
-              height: { xs: 'auto', md: fluid(128, 44) },
-              px: fluid(30, 13),
+              height: { xs: 'auto', md: fluid(123, 54) },
+              px: fluid(23, 13),
               py: { xs: 0.75, md: 0 },
-              pb: { md: '0.02em' },
-              fontSize: { xs: 25, sm: 38, md: fluid(125, 28) },
+              pb: { md: '0.03em' },
+              fontSize: { xs: 36, sm: 38, md: fluid(127, 10) },
               borderRadius: fluid(18, 12),
               background: RED_GRADIENT,
               boxShadow:
@@ -165,11 +185,11 @@ export default function TeamStoresHero() {
           variants={rise}
           sx={{
             mt: fluid(18, 16),
-            maxWidth: { xs: 520, md: 'min(60vw, 1600px)' },
-            fontWeight: 400,
-            lineHeight: 1.2,
+            maxWidth: { xs: 520, md: 'min(60vw, 1200px)' },
+            fontWeight: 300,
+            lineHeight: 1.14,
             color: 'rgba(255,255,255,0.82)',
-            fontSize: { xs: 14, sm: 16, md: fluid(30, 12) },
+            fontSize: { xs: 10, sm: 14, md: fluid(30, 8) },
             textShadow: '0 2px 18px rgba(0,0,0,0.5)',
           }}
         >
@@ -182,7 +202,7 @@ export default function TeamStoresHero() {
           <MotionBox whileHover={reduce ? undefined : { y: -3 }} whileTap={{ scale: 0.97 }}>
             <Box
               component={Link}
-              href="/customize"
+              href="/custom-apparel#shirts"
               sx={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -194,7 +214,7 @@ export default function TeamStoresHero() {
                 color: '#fff',
                 textDecoration: 'none',
                 textTransform: 'uppercase',
-                fontWeight: 500,
+                fontWeight: 400,
                 fontSize: fluid(25, 13),
                 whiteSpace: 'nowrap',
                 background: RED_GRADIENT,
@@ -204,7 +224,10 @@ export default function TeamStoresHero() {
                   filter: 'brightness(1.1)',
                   boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.3), 0 16px 38px rgba(225,35,45,0.55)',
                 },
-                '& svg': { fontSize: '1.15em', transition: 'transform .3s cubic-bezier(.22,1,.36,1)' },
+                '& svg': {
+                  fontSize: '1.15em',
+                  transition: 'transform .3s cubic-bezier(.22,1,.36,1)',
+                },
                 '&:hover svg': { transform: 'translateX(4px)' },
                 '&:focus-visible': { outline: '3px solid #fff', outlineOffset: 3 },
               }}

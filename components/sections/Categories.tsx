@@ -207,19 +207,6 @@ export default function Categories() {
     <Box
       component="section"
       aria-labelledby="categories-title"
-      // sx={{
-      //   position: 'relative',
-      //   overflow: 'hidden',
-      //   color: '#0a0a0a',
-      //   backgroundColor: '#d3d3d6',
-      //   backgroundImage: 'url(/images/categories/bg2.png)',
-      //   backgroundSize: 'cover',
-      //   backgroundPosition: 'top right',
-      //   backgroundRepeat: 'no-repeat',
-      //   backgroundBlendMode: 'multiply',
-      //   pt: { xs: 9, sm: 10, lg: fluid(145, 80) },
-      //   pb: { xs: 8, lg: fluid(100, 56) },
-      // }}
       sx={{
                   position: 'relative',
                   overflow: 'hidden',
@@ -229,7 +216,6 @@ export default function Categories() {
                   backgroundImage: 'url(/images/categories/bg2.png)',
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "100% 100%",
-                  // backgroundPosition: "center",
                   backgroundPosition: 'top left',
                   backgroundBlendMode: 'multiply',
                   pt: { xs: 9, sm: 10, lg: fluid(145, 80) },
@@ -237,7 +223,6 @@ export default function Categories() {
               }}
     >
       <Box sx={{ maxWidth: 2560, mx: 'auto', px: GUTTER }}>
-        {/* Heading */}
         {/* Heading */}
 <MotionBox
   initial={reduce ? false : { opacity: 0, y: 24 }}

@@ -35,15 +35,15 @@ const buttonBase = {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: fluid(14, 10),
-  height: fluid(80, 50),
-  px: fluid(30, 22),
-  borderRadius: fluid(10, 8),
+  gap: fluid(10, 8),
+  height: fluid(62, 42),
+  px: fluid(24, 16),
+  borderRadius: fluid(9, 7),
   color: '#fff',
   textDecoration: 'none',
   textTransform: 'uppercase',
-  fontWeight: 500,
-  fontSize: fluid(31, 15),
+  fontWeight: 400,
+  fontSize: fluid(25, 13),
   whiteSpace: 'nowrap',
   transition: 'filter .25s, box-shadow .25s, background-color .25s',
   '& svg': { fontSize: '1.15em', transition: 'transform .3s cubic-bezier(.22,1,.36,1)' },
@@ -64,7 +64,7 @@ export default function BoosterHero() {
         overflow: 'hidden',
         color: '#fff',
         bgcolor: '#020305',
-        minHeight: `max(calc(100svh - ${fluid(287, 120)}), 680px)`,
+        minHeight: `max(calc(100svh - ${fluid(42, 24)}), 700px)`,
         borderRadius: `0 0 ${fluid(52, 28)} ${fluid(52, 28)}`,
         display: 'flex',
         flexDirection: 'column',
@@ -148,7 +148,7 @@ export default function BoosterHero() {
             textTransform: 'uppercase',
             letterSpacing: '0.005em',
             lineHeight: 1,
-            fontSize: { xs: 'clamp(28px, 9vw, 54px)', md: fluid(142, 44) },
+            fontSize: { xs: 36, sm: 38, md: fluid(127, 10) },
             textShadow: '0 4px 30px rgba(0,0,0,0.5)',
           }}
         >
@@ -161,10 +161,11 @@ export default function BoosterHero() {
             sx={{
               display: 'inline-flex',
               alignItems: 'center',
-              height: { xs: 'auto', md: fluid(143, 60) },
-              px: fluid(37, 16),
+              height: { xs: 'auto', md: fluid(123, 54) },
+              px: fluid(23, 13),
               py: { xs: 0.75, md: 0 },
               pb: { md: '0.03em' },
+              fontSize: { xs: 36, sm: 38, md: fluid(127, 10) },
               borderRadius: fluid(18, 12),
               background: RED_GRADIENT,
               boxShadow:
@@ -179,13 +180,13 @@ export default function BoosterHero() {
         <MotionBox
           variants={rise}
           sx={{
-            mt: fluid(30, 18),
-            maxWidth: { xs: 540, md: 'min(66vw, 1700px)' },
-            fontWeight: 400,
-            lineHeight: 1.08,
+            mt: fluid(18, 16),
+            maxWidth: { xs: 520, md: 'min(60vw, 1200px)' },
+            fontWeight: 300,
+            lineHeight: 1.14,
             color: 'rgba(255,255,255,0.82)',
-            fontSize: { xs: 16, sm: 18, md: fluid(37, 16) },
-            textShadow: '0 2px 18px rgba(0,0,0,0.6)',
+            fontSize: { xs: 10, sm: 14, md: fluid(30, 8) },
+            textShadow: '0 2px 18px rgba(0,0,0,0.5)',
           }}
         >
           Show your team pride with custom booster shirts designed for fans, supporters and
@@ -196,7 +197,7 @@ export default function BoosterHero() {
         <MotionBox
           variants={rise}
           sx={{
-            mt: fluid(36, 24),
+            mt: fluid(32, 24),
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
